@@ -4,10 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,21 +43,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private class MyWebViewClient extends WebViewClient {
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return true;
+    public class AndroidtoJs extends Object{
+        // 定义JS需要调用的方法
+        // 被JS调用的方法必须加入@JavascriptInterface注解
+        @JavascriptInterface
+        public void getLocation(String msg) {
+            System.out.println("JS调用了Android的hello方法");
+            Log.e("AndroidtoJs", msg);
+            Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
         }
-
-
-        public void onPageFinished(WebView view, String url) {
-            CookieManager cookieManager = CookieManager.getInstance();
-            String CookieStr = cookieManager.getCookie(url);
-            if (CookieStr != null) {
-                Log.i("cookie", CookieStr);
-            }
-            super.onPageFinished(view, url);
-        }
-
-
     }
+
+
 }
