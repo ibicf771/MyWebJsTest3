@@ -6,16 +6,31 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/button"
-        android:text="button"
+    <LinearLayout
+        android:id="@+id/button_layout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <WebView
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/JavaToJsDefault"
+            android:text="JavaToJsDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/JavaToJsSpec"
+            android:text="JavaToJsSpec"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <com.github.lzyzsd.jsbridge.BridgeWebView
         android:id="@+id/web_view"
-        android:layout_below="@id/button"
+        android:layout_below="@id/button_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </WebView>
+    </com.github.lzyzsd.jsbridge.BridgeWebView>
 
 </RelativeLayout>
